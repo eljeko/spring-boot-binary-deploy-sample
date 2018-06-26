@@ -61,6 +61,15 @@ oc start-build hello-rest --from-dir=./target --follow
 
 **NOTE:** the property ```JAVA_APP_JAR``` used in the build config will be injected into the future container running in the pod of our service, if you want to change the name of the jar in the future or change the approach you should read more about [build strategy](https://docs.openshift.com/container-platform/3.9/dev_guide/builds/build_strategies.html) , [how deployment works](https://docs.openshift.com/container-platform/3.9/dev_guide/deployments/how_deployments_work.html) and reference for [redhat-openjdk18-openshift](https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_java_s2i_for_openshift/index) image 
 
+## Change the name of the fat jar to run (optional if you change the mane of the jar)
+
+This is an hint on how to change the jar runtime name in ```DeploymentConfig```, please refer to [note](#Create-the-binary- builder) on previous paragraph to read more about build and deploy configuration for Openshift.
+
+To change the name of the jar to run add the environment variablem to DeploumentConfig:
+
+```
+JAVA_APP_JAR=<your-app>-exec.jar
+```
 
 ## Setup configmap
 
@@ -77,7 +86,7 @@ ls
 README.md                configuration            spring-boot-rest-service
 ```
 
-Now we can the command to create the config-map:
+Now we can run the command to create the config-map:
 
 ```
 oc create configmap hello-rest-config --from-file=configuration
@@ -114,7 +123,7 @@ oc create configmap hello-rest-config --from-file=configuration --dry-run -o yam
 
 ## Create the app 
 
-Now we can create the app for the buil, this will create the DeploymentConfig for openshift.
+Now we can create the app for the build, this will create the DeploymentConfig for openshift.
 
 ```
 oc new-app hello-rest
@@ -126,7 +135,7 @@ Now the application should start but, will crash becouse we need to configure it
 
 ### Set environment variables
 
-We need to add the runtime properties to point the properties file:
+Add the runtime property to point the path to configuration file:
 
 ```
 oc set env dc/hello-rest JAVA_OPTIONS="-DPROPERTIES_PATH=/opt/hello-rest-config/hello-rest.properties"
@@ -145,15 +154,7 @@ warning: volume "hello-rest-config" did not previously exist and was not overrid
 
 Now files stored in the config map will be mounted as regular files inside each pod on the path ```/opt/hello-rest-config```
 
-## Change the name of the fat jar to run (optional if you change the mane of the jar)
 
-This is an hint on how to change the jar runtime name in ```DeploymentConfig```, please refer to [note](#Create-the-binary- builder) on previous paragraphs to read more aboutn build and deploy configuration for Openshift.
-
-To change the name of the jar to run add the environment variablem to DeploumentConfig:
-
-```
-JAVA_APP_JAR=<your-app>-exec.jar
-```
 
 ## Expose the service as route.
 
@@ -168,6 +169,15 @@ route "hello-rest" exposed
 ```
 Access the application.
 
+To see the new route run:
+```
+oc get route
+```
+And check the output:
+```
+NAME         HOST/PORT                                   PATH      SERVICES     PORT       TERMINATION   WILDCARD
+hello-rest   hello-rest-rest-hello.192.168.64.8.nip.io             hello-rest   8080-tcp                 None
+```
 # Reference
 
 [s2i for jdk image documentation](https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_java_s2i_for_openshift/index)
