@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: hello-rest-deploy
+  labels:
+    name: hello-rest
+spec:
+  strategy:
+    type: JenkinsPipeline
+    jenkinsPipelineStrategy:
+      jenkinsfile: |-
+        node ("maven") {                        
+
+          stage ("download") {            
+            sh "curl -L  https://github.com/eljeko/spring-boot-binary-deploy-sample/blob/master/pipelines/binary/hello-rest-1.0-exec.jar?raw=true > hello-rest-1.0-exec.jar"
+          }         
+        
+          stage ("deploy") {            
+            sh "oc start-build hello-rest --from-file=hello-rest-1.0-exec.jar --follow -n hello-rest"
+          }         
+
+        }          
