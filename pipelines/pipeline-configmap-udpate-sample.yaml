@@ -11,7 +11,7 @@ spec:
       jenkinsfile: |-
         node ("maven") {                        
           stage ("Update configmap PROD") {            
-            sh "curl https://raw.githubusercontent.com/eljeko/ocp-release-pipeline-sample/master/config-map/configuration/description.properties -o description.properties"              
-            sh "oc create configmap cool-app-config --from-file=configuration --dry-run -o yaml|oc replace -n cool-app-prod -f -"
+            sh "curl https://raw.githubusercontent.com/eljeko/spring-boot-binary-deploy-sample/master/pipelines/configuration/hello-rest.properties -o hello-rest.properties"              
+            sh "oc create configmap hello-rest-config --from-file=hello-rest.properties --dry-run -o yaml|oc replace -n hello-rest -f -"
           }         
         }
