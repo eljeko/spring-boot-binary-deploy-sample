@@ -25,7 +25,7 @@ oc project cicd
 
 ## Setup grants and roles
 
-Grant all the roles to jenkins service account for the other two projects (cool-app-dev and cool-app-prod):
+Grant all the roles to jenkins service account for the other project (hello-rest):
 
 system:serviceaccount:cicd:jenkins
 
@@ -81,3 +81,4 @@ Now from the cicd project we can start the pipeline to update the config
 oc start-build hello-rest-configmap-pipeline
 ```
 
+**NOTE**: In the pipelines both the jar and the properies are downloaded with curl from this repo on github, in a real implementation the jar should be published on an artifacts repository. The configuration files can be published on a reachable http url. 
