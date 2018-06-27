@@ -61,7 +61,7 @@ oc start-build hello-rest --from-dir=./target --follow
 
 **NOTE:** the property ```JAVA_APP_JAR``` used in the build config will be injected into the future container running in the pod of our service, if you want to change the name of the jar in the future or change the approach you should read more about [build strategy](https://docs.openshift.com/container-platform/3.9/dev_guide/builds/build_strategies.html) , [how deployment works](https://docs.openshift.com/container-platform/3.9/dev_guide/deployments/how_deployments_work.html) and reference for [redhat-openjdk18-openshift](https://access.redhat.com/documentation/en-us/red_hat_jboss_middleware_for_openshift/3/html-single/red_hat_java_s2i_for_openshift/index) image 
 
-## Change the name of the fat jar to run (optional if you change the mane of the jar)
+## Change the name of the fat jar to run (optional if you change the name of the jar)
 
 This is an hint on how to change the jar runtime name in ```DeploymentConfig```, please refer to [note](#Create-the-binary- builder) on previous paragraph to read more about build and deploy configuration for Openshift.
 
