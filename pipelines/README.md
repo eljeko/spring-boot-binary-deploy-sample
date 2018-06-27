@@ -81,4 +81,4 @@ Now from the cicd project we can start the pipeline to update the config
 oc start-build hello-rest-configmap-pipeline
 ```
 
-**NOTE**: In the pipelines both the jar and the properies are downloaded with curl from this repo on github, in a real implementation the jar should be published on an artifacts repository. The configuration files can be published on a reachable http url. 
+**NOTE**: In the pipelines both the jar and the properties are downloaded with curl from this repo on github, in a real implementation the jar should be published on an artifacts repository. The configuration files can be published on a reachable http url. 
