@@ -2,10 +2,10 @@
 
 This sample is based on [RHOAR Spring Boot](https://developers.redhat.com/products/rhoar/overview/), the goal of the sample is to show how to build locally a fat jar for [OCP](https://www.openshift.com/) and then deploy it usign the Binary Deploy approach.
 
-The sample works both on [OCP](https://www.openshift.com/) and [Minishfit](https://developers.redhat.com/products/cdk/overview/).
+The sample works both on [OCP](https://www.openshift.com/) and [Minishift](https://developers.redhat.com/products/cdk/overview/).
 
 The tutorial assumes that:
-* You already have a running [OCP](https://www.openshift.com/) and/or [Minishfit](https://developers.redhat.com/products/cdk/overview/) installed.
+* You already have a running [OCP](https://www.openshift.com/) and/or [Minishift](https://developers.redhat.com/products/cdk/overview/) installed.
 * You have installed the [oc](https://docs.openshift.com/container-platform/3.9/cli_reference/get_started_cli.html) cli tool.
 
 The first part is focused on manual deploy, the second part introduces the jenkins pipelines.
