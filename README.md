@@ -20,7 +20,7 @@ First login into openshift:
 oc login -u <YOUR_USER>
 ```
 
-On minishift (you can use whatever you want as password:
+On minishift (you can use whatever you want as password):
 
 ```
 oc login -u developer
