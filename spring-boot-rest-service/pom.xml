@@ -33,8 +33,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <maven.min.version>3.3.9</maven.min.version>
-        <spring-boot.version>1.5.13.RELEASE</spring-boot.version>
-        <spring-boot.bom.version>1.5.13.Final-redhat-3</spring-boot.bom.version>
+        
+        <spring-boot.bom.version>1.5.14.Final-redhat-1</spring-boot.bom.version>
         <maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
         <fabric8-maven-plugin.version>3.5.38</fabric8-maven-plugin.version>
     </properties>
@@ -68,8 +68,7 @@
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
+                <artifactId>spring-boot-maven-plugin</artifactId>                
                 <configuration>
                     <profiles>
                         <profile>local</profile>
